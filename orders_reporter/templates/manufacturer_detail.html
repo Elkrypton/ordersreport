@@ -1,0 +1,47 @@
+{% block header %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+<style>
+  body {
+    height: 125vh;
+    background-color: white;
+    background-size: cover;
+    font-family: sans-serif;
+    margin-top: 20px;
+    padding: 20px;
+}
+</style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+  {% endblock header %}
+{% block content %}
+<body>
+    <h1>Manufacturer Details</h1>
+    <a href="{% url 'manufacturer_list' %}" class="btn btn-primary">Back to Manufacturer List</a>
+    <a href="{% url 'delete' manufacturer.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'manufacturer_pdf' pk=manufacturer.id %}?download=True" class="btn btn-primary">Download PDF</a>
+    <a href="{% url 'edit' manufacturer.pk %}" class="btn btn-primary">Edit</a>
+    <br>
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <p><strong>Name:</strong> {{ manufacturer.vendor }}</p>
+        <p><strong>Models:</strong> {{ manufacturer.model }}</p>
+        <p><strong>Store SKU:</strong> {{ manufacturer.store_sku }}</p>
+        <p><strong>OMSID:</strong> {{ manufacturer.omsid }}</p>
+        <p><strong>Store SO SKU:</strong> {{ manufacturer.store_so_sku }}</p>
+        <p><strong>Parts Usage:</strong> {{ manufacturer.parts_usage }}</p>
+        <br>
+        <br>
+        <img src="data:image/png;base64,{{ qr_code }}" />
+
+      </div>
+    </div>
+  </div>
+
+  </body>
+{% endblock content %}
+  

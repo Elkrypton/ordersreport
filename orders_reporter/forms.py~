@@ -1,0 +1,11 @@
+from django import forms
+
+from django import forms
+from .models import Manufacturer
+
+class ManufacturerForm(forms.ModelForm):
+    class Meta:
+        model = Manufacturer
+        fields = ['name', 'model', 'store_sku', 'omsid', 'store_so_sku', 'parts_usage']
+        for field in fields:
+            forms.TextInput(attrs={'placeholder':field,'style':'width:400px;'})

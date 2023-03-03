@@ -1,0 +1,16 @@
+from django.shortcuts import render, redirect
+from .forms import ManufacturerForm 
+
+# Create your views here.
+
+def my_form_view(request):
+    if request.method == 'POST':
+        form = ManufacturerForm(request.POST)
+        if form.is_valid():
+            manufacturer = form.save(commit=False)
+            # add some extra fields or do some operations
+            manufacturer.save()
+            return render('success_page.html')
+    else:
+        form = ManufacturerForm()
+    return render(request, 'forms.html', {'form': form})
